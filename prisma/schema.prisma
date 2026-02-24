@@ -1,0 +1,73 @@
+// prisma/schema.prisma
+// Modelos de datos para EAFIT Smart Parking
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────
+// Zona de parqueadero del campus EAFIT
+// ─────────────────────────────────────────────
+model Zona {
+  id               String    @id @default(cuid())
+  nombre           String
+  slug             String    @unique
+  lat              Float
+  lng              Float
+  capacidadCarro   Int
+  capacidadMoto    Int
+  ocupacionCarro   Int       @default(0)
+  ocupacionMoto    Int       @default(0)
+  // "Norte" | "Centro-Oeste" | "Sur-Oeste" | "Oriente" | "Sur"
+  ubicacion        String
+  // "vegas" | "cra49" — punto de acceso más cercano
+  accesoMasCercano String
+  activa           Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  reportes         Reporte[]
+}
+
+// ─────────────────────────────────────────────
+// Reporte crowdsourced de un usuario anónimo
+// ─────────────────────────────────────────────
+model Reporte {
+  id            String   @id @default(cuid())
+  zonaId        String
+  zona          Zona     @relation(fields: [zonaId], references: [id])
+  // "fila_moderada" | "congestion_severa" | "lleno" | "hay_cupos" | "accidente"
+  tipo          String
+  lat           Float?
+  lng           Float?
+  // Cookie/fingerprint anónimo para rate limiting
+  usuarioAnonId String?
+  // Empieza en 1.0 y puede decaer con el tiempo
+  confianza     Float    @default(1.0)
+  expiraEn      DateTime
+  activo        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+
+  @@index([zonaId, activo])
+  @@index([expiraEn])
+}
+
+// ─────────────────────────────────────────────
+// Cache de datos de tráfico (TomTom API)
+// TTL de 60 segundos para no quemar requests
+// ─────────────────────────────────────────────
+model TraficoCache {
+  id           String   @id @default(cuid())
+  // "vegas" | "cra49"
+  punto        String   @unique
+  currentSpeed Float
+  freeFlowSpeed Float
+  congestionado Boolean
+  confidence   Float?
+  consultadoEn DateTime @default(now())
+}

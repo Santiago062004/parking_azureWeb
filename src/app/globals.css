@@ -1,0 +1,96 @@
+/**
+ * src/app/globals.css
+ *
+ * Estilos globales + paleta de colores EAFIT en Tailwind v4 (@theme).
+ * Tailwind v4 usa CSS nativo para configurar el tema, sin tailwind.config.ts.
+ *
+ * Paleta:
+ *   eafit-bg      #0F172A  — Fondo principal (Slate profundo)
+ *   eafit-card    #1E293B  — Fondo tarjetas
+ *   eafit-blue    #004B87  — Azul institucional (headers, títulos)
+ *   eafit-lime    #C4D600  — Verde lima EAFIT (acentos, botones, estado disponible)
+ *   eafit-orange  #F97316  — Alerta moderada
+ *   eafit-red     #EF4444  — Alerta crítica
+ *   eafit-muted   #94A3B8  — Texto secundario
+ *   eafit-surface #334155  — Bordes y separadores
+ */
+
+@import "tailwindcss";
+
+@theme {
+  /* ── Paleta EAFIT ─────────────────────────────────── */
+  --color-eafit-bg: #0F172A;
+  --color-eafit-card: #1E293B;
+  --color-eafit-blue: #004B87;
+  --color-eafit-lime: #C4D600;
+  --color-eafit-orange: #F97316;
+  --color-eafit-red: #EF4444;
+  --color-eafit-muted: #94A3B8;
+  --color-eafit-surface: #334155;
+
+  /* ── Tipografía ───────────────────────────────────── */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Reset / Base ─────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0F172A;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar personalizado ──────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E293B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* ── Leaflet — tiles oscuros ─────────────────────────── */
+.leaflet-tile-pane {
+  filter: brightness(0.5) saturate(0.7) invert(1) hue-rotate(180deg);
+}
+
+/* Reset popup Leaflet */
+.leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 12px !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+}
+
+.leaflet-popup-tip-container {
+  display: none !important;
+}
+
+.leaflet-container {
+  font-family: var(--font-sans) !important;
+}
