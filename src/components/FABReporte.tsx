@@ -1,9 +1,9 @@
-/**
+﻿/**
  * src/components/FABReporte.tsx
  *
  * Floating Action Button para crear reportes.
- * Al tocar el botón +, expande un bottom sheet con opciones de reporte.
- * Usa Framer Motion para animación suave de apertura.
+ * Al tocar el botÃ³n +, expande un bottom sheet con opciones de reporte.
+ * Usa Framer Motion para animaciÃ³n suave de apertura.
  */
 
 "use client";
@@ -27,11 +27,9 @@ const OPCIONES_REPORTE: Array<{
     emoji: string;
     color: string;
 }> = [
-        { tipo: "hay_cupos", label: "Hay cupos", emoji: "✅", color: "text-[#C4D600]" },
-        { tipo: "fila_moderada", label: "Hay fila", emoji: "🚗", color: "text-[#F97316]" },
-        { tipo: "congestion_severa", label: "Congestión", emoji: "🚨", color: "text-[#EF4444]" },
-        { tipo: "lleno", label: "Lleno", emoji: "🅿️", color: "text-[#EF4444]" },
-        { tipo: "accidente", label: "Accidente", emoji: "⚠️", color: "text-[#EF4444]" },
+        { tipo: "fila_moderada", label: "Hay fila", emoji: "ðŸš—", color: "text-[#F97316]" },
+        { tipo: "congestion_severa", label: "CongestiÃ³n", emoji: "ðŸš¨", color: "text-[#EF4444]" },
+        { tipo: "accidente", label: "Accidente", emoji: "âš ï¸", color: "text-[#EF4444]" },
     ];
 
 export function FABReporte({
@@ -80,7 +78,7 @@ export function FABReporte({
                         {/* Handle */}
                         <div className="w-10 h-1 bg-[#334155] rounded-full mx-auto mb-5" />
 
-                        <h3 className="text-white font-semibold text-base mb-1">Reportar condición</h3>
+                        <h3 className="text-white font-semibold text-base mb-1">Reportar condiciÃ³n</h3>
                         {(zonaNombre || zonaSeleccionada) && (
                             <p className="text-[#94A3B8] text-sm mb-4">
                                 {zonaNombre ?? zonas.find((z) => z.id === zonaSeleccionada)?.nombre ?? ""}
@@ -148,3 +146,4 @@ export function FABReporte({
         </>
     );
 }
+
