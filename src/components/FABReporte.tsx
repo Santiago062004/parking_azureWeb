@@ -1,4 +1,4 @@
-/**
+﻿/**
  * src/components/FABReporte.tsx
  *
  * Floating Action Button para crear reportes.
@@ -9,7 +9,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, X, CheckCircle, AlertTriangle, AlertOctagon } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { TipoReporte } from "@/types";
 
@@ -27,12 +27,10 @@ const OPCIONES_REPORTE: Array<{
     emoji: string;
     color: string;
 }> = [
-        { tipo: "hay_cupos", label: "Hay cupos", emoji: "✅", color: "text-[#C4D600]" },
-        { tipo: "fila_moderada", label: "Hay fila", emoji: "🚗", color: "text-[#F97316]" },
-        { tipo: "congestion_severa", label: "Congestión", emoji: "🚨", color: "text-[#EF4444]" },
-        { tipo: "lleno", label: "Lleno", emoji: "🅿️", color: "text-[#EF4444]" },
-        { tipo: "accidente", label: "Accidente", emoji: "⚠️", color: "text-[#EF4444]" },
-    ];
+    { tipo: "fila_moderada", label: "Hay fila", emoji: "🚗", color: "text-[#F97316]" },
+    { tipo: "congestion_severa", label: "Congestión severa", emoji: "🚨", color: "text-[#EF4444]" },
+    { tipo: "accidente", label: "Accidente", emoji: "⚠️", color: "text-[#EF4444]" },
+];
 
 export function FABReporte({
     zonaId,
